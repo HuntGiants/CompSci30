@@ -1,0 +1,24 @@
+import pygame, sys
+from pygame.locals import QUIT
+
+pygame.init()
+DISPLAYSURF = pygame.display.set_mode((1000, 1000))
+pygame.display.set_caption('Giant Hunt!')
+
+sq_surface = pygame.Surface((100,100))
+
+while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+    
+    #DISPLAYSURF.fill(("DarkGreen"))
+    DISPLAYSURF.fill((255,255,255))
+    DISPLAYSURF.blit(sq_surface,(0,900))
+    DISPLAYSURF.blit(sq_surface,(900,900))
+    DISPLAYSURF.blit(sq_surface,(900,0))
+    DISPLAYSURF.blit(sq_surface,(0,0))
+    DISPLAYSURF.blit(sq_surface,(450,450))
+    
+    pygame.display.update()
