@@ -1,0 +1,58 @@
+
+
+
+def decimal_to_binary(decimal_num):
+    binary_num = ""
+    if decimal_num == 0:
+        binary_num = "0"
+    else:
+        while decimal_num > 0:
+            remainder = decimal_num % 2
+            binary_num = str(remainder) + binary_num
+            decimal_num //= 2
+    return binary_num
+
+def rgb_to_hex(red,green,blue):
+    hex_value = "#{:02X}{:02X}{:02X}".format(red, green, blue)
+    return hex_value
+
+def hex_to_rgb(hex_code):
+    hex_color = hex_code.lstrip("#")
+    red = int(hex_color[0:2], 16)
+    green = int(hex_color[2:4], 16)
+    blue = int(hex_color[4:6], 16)
+    return red, green, blue
+
+
+while True:
+    print("Select an option:")
+    print("1. Decimal to binary")
+    print("2. Binary to decimal")
+    print("3. RGB to Hex")
+    print("4. Hex to RGB")
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        decimal_num = int(input("Enter a decimal number: "))
+        binary_num = decimal_to_binary(decimal_num)
+        print("The binary equivalent of", decimal_num, "is", binary_num)
+
+    elif choice == "2":
+        binary_num = input("Enter a binary number: ")
+        decimal_num = int(binary_num, 2)
+        print("The decimal equivalent of", binary_num, "is", decimal_num)
+
+    elif choice == "3":
+        red = int(input("Enter the red value (0-255): "))
+        green = int(input("Enter the green value (0-255): "))
+        blue = int(input("Enter the blue value (0-255): "))
+        hex_color = rgb_to_hex(red, green, blue)
+        print("The hexadecimal equivalent of", hex_color)
+        
+    elif choice == "4":
+        hex_color = input("Enter the hexadecimal color code (e.g., #FF8000): ")
+        red, green, blue = hex_to_rgb(hex_color)
+        print("The RGB equivalent is: ({}, {}, {})".format(red, green, blue))
+
+    else:
+        print("Invalid choice. Please try again.")
