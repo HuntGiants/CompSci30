@@ -1,6 +1,22 @@
+def convert(value, source_unit, target_unit):
+    conversion_functions = {
+        ("hex", "rgb"): hex_to_rgb,
+        ("rgb", "hex"): rgb_to_hex,
+        ("decimal", "binary"): decimal_to_binary,
+        ("binary", "decimal"): binary_to_decimal,
+        
+        ("hex", "binary"): hex_to_binary,
+        ("binary", "hex"): binary_to_hex,
+        ("rgb", "binary"): rgb_to_binary,
+        ("binary", "rgb"): binary_to_rgb,
+        ("hex", "decimal"): hex_to_decimal,
+        ("decimal", "hex"): decimal_to_hex,
+        ("rgb", "decimal"): rgb_to_decimal,
+        ("decimal". "rgb"): decimal_to_rgb
+    }
 
 
-
+#DECIMAL TO BINARY 
 def decimal_to_binary(decimal_num):
     binary_num = ""
     if decimal_num == 0:
@@ -12,6 +28,7 @@ def decimal_to_binary(decimal_num):
             decimal_num //= 2
     return binary_num
 
+#RGB TO HEX
 def rgb_to_hex(red,green,blue):
     hex_value = "#{:02X}{:02X}{:02X}".format(red, green, blue)
     return hex_value
@@ -27,9 +44,18 @@ def hex_to_rgb(hex_code):
 while True:
     print("Select an option:")
     print("1. Decimal to binary")
-    print("2. Binary to decimal")
+    print("2. Binary to Decimal")
     print("3. RGB to Hex")
     print("4. Hex to RGB")
+    print("5. Hex to Binary")
+    print("6. Binary to Hex")
+    print("7. RGB to Binary")
+    print("8. Binary to RGB")
+    print("9. Hex to Decimal")
+    print("10. Decimal to Hex")
+    print("11. RGB to Decimal")
+    print("12. Decimal to RGB")
+    print("13. Access Saved Value")
     choice = input("Enter your choice: ")
 
     if choice == "1":
