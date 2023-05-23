@@ -1,0 +1,89 @@
+def convert(value, source_unit, target_unit):
+    conversion_functions = {
+        ("hex", "rgb"): hex_to_rgb,
+        ("rgb", "hex"): rgb_to_hex,
+        ("decimal", "binary"): decimal_to_binary,
+        ("binary", "decimal"): binary_to_decimal,
+        
+        ("hex", "binary"): hex_to_binary,
+        ("binary", "hex"): binary_to_hex,
+        ("rgb", "binary"): rgb_to_binary,
+        ("binary", "rgb"): binary_to_rgb,
+        ("hex", "decimal"): hex_to_decimal,
+        ("decimal", "hex"): decimal_to_hex,
+        ("rgb", "decimal"): rgb_to_decimal,
+        ("decimal". "rgb"): decimal_to_rgb
+        
+    }
+
+    conversion_key = (source_unit.lower(), target_unit.lower())
+
+    if conversion_key in conversion_functions:
+        conversion_function = conversion_functions[conversion_key]
+        return conversion_function(value)
+    else:
+        return "Conversion not supported for the specified units."
+
+def hex_to_rgb(hex_color):
+    hex_color = hex_color.lstrip("#")
+    red = int(hex_color[0:2], 16)
+    green = int(hex_color[2:4], 16)
+    blue = int(hex_color[4:6], 16)
+    return red, green, blue
+
+def rgb_to_hex(red, green, blue):
+    hex_value = "#{:02X}{:02X}{:02X}".format(red, green, blue)
+    return hex_value
+
+def decimal_to_binary(decimal_num):
+    binary_num = bin(decimal_num)
+    return binary_num[2:]
+
+def binary_to_decimal(binary_num):
+    decimal_num = int(binary_num, 2)
+    return decimal_num
+
+def main():
+    print("Select an option:")
+    print("1. Custom Conversion")
+    print("2. Predefined Conversion")
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        source_unit = input("Enter the source unit: ")
+        target_unit = input("Enter the target unit: ")
+        value = input("Enter the value to convert: ")
+
+        converted_value = convert(value, source_unit, target_unit)
+        print("The converted value is:", converted_value)
+
+    elif choice == "2":
+        print("Available Predefined Conversions:")
+        print("1. Hexadecimal to RGB")
+        print("2. RGB to Hexadecimal")
+        print("3. Decimal to Binary")
+        print("4. Binary to Decimal")
+        predefined_choice = input("Enter the predefined conversion choice: ")
+        predefined_values = input("Enter the value to convert: ")
+
+        if predefined_choice == "1":
+            converted_values = convert(predefined_values, "hex", "rgb")
+            print("The RGB equivalent is:", converted_values)
+        elif predefined_choice == "2":
+            converted_value = convert(predefined_values, "rgb", "hex")
+            print("The hexadecimal equivalent is:", converted_value)
+        elif predefined_choice == "3":
+            converted_value = convert(predefined_values, "decimal", "binary")
+            print("The binary equivalent is:", converted_value)
+        elif predefined_choice == "4":
+            converted_value = convert(predefined_values, "binary", "decimal")
+            print("The decimal equivalent is:", converted_value)
+        else:
+            print("Invalid predefined conversion choice.")
+
+    else:
+        print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
+
